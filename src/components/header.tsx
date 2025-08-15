@@ -7,7 +7,7 @@ export default function Header() {
 
       <ul className="flex items-center gap-4">
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/post">Post</Link></li>
+        <li><Link href="/api/posts">Create Post</Link></li>
 
       </ul>
     </div>

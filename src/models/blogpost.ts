@@ -9,8 +9,12 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  authorId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }
 
 
 }, {timestamps: true});
-const BlogPost = mongoose.model('Post',postSchema);
+const BlogPost = mongoose.models.Post || mongoose.model('BlogPost', postSchema);
 export default BlogPost; 
