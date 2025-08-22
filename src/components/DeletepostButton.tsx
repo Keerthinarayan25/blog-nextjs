@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { deletePost } from "@/app/actions/route";
+import { deletePost } from "@/app/actions/postActions";
 
 export default function DeletePostButton({ postId }: DeletePostButtonProps) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -26,6 +26,7 @@ export default function DeletePostButton({ postId }: DeletePostButtonProps) {
 
       }
     } catch (e) {
+      console.error("Error Deleting  post:", e);
       toast("A error occured while deleting the post! Please trt again",);
 
     } finally {
