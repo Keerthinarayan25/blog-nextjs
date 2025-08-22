@@ -63,7 +63,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="flex justify-between items-center mb-8">
+    <div className="flex items-center justify-center min-h-screen">
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onLoginSubmit)} className="space-y-4">

@@ -1,6 +1,10 @@
+import { auth } from "@/lib/auth";
+import { getPostBySlug } from "@/models/db/queries";
 import { notFound } from "next/navigation";
+import PostContent from "@/components/PostContent";
+import { headers } from "next/headers";
 
-async function PostDetailsPage({
+export default async function PostDetailsPage({
   params,
 }:{
   params:Promise<{slug:string}>;
@@ -8,13 +12,20 @@ async function PostDetailsPage({
   const {slug} = await params;
   const post = await getPostBySlug(slug);
 
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
   if(!post){
     notFound();
   }
+
+  const isAuthor = session?.user?.id === post.authorId;
+
   return (
-    <main>
-      <div>
-        
+    <main className="py-10">
+      <div className="max-w-4xl mx-auto">
+        <PostContent post={post} isAuthor={isAuthor} />
       </div>
     </main>
   )
