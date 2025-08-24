@@ -10,7 +10,7 @@ import { useTransition } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { CreatePost, UpdatePost } from "@/app/actions/route";
+import { CreatePost, UpdatePost } from "@/app/actions/postActions";
 
 
 const postSchema = z.object({
@@ -86,6 +86,7 @@ export default function PostForm({ isEditing, post }: PostFormProps) {
           toast(res.message);
         }
       } catch (e) {
+        console.error("Error creating/updating post:", e);
         toast("Failed to create post");
       }
     });
